@@ -4,11 +4,13 @@ fn main(){
     let added = add(a, b);
     let substracted = sub(a, b);
     let multiplied = mul(a, b);
-    let divide: f32 = div(a, b) ;
+    match div(a, b) {
+        Some(x) => println!("Result of division is : {} ", x),
+        None => println!("Can not divide with 0")
+    }
     println!("Added value is : {}", added);
     println!("Subtracted value is : {}", substracted);
     println!("Multiplied value is : {}", multiplied);
-    println!("Divided value is : {}", divide);
 }
 
 fn add(a: i32, b: i32) -> i32 {
@@ -23,6 +25,55 @@ fn mul(a: i32, b: i32) -> i32 {
     a * b
 }
 
-fn div(a: i32, b: i32) -> f32 {
-    (a  as f32)/ (b as f32) 
+fn div(a: i32, b: i32) -> Option<f32> {
+    if b == 0 {
+        None
+    }else{
+        let result = (a  as f32) / (b as f32);
+        Some(result)
+    }
+    
+}
+
+
+#[cfg(test)]
+
+mod tests{
+
+    mod add_test {
+
+        use super::super::*;
+
+        #[test]
+    
+        fn test_add(){
+            let num1 = 1;
+            let num2 = 2;
+            let result = add(num1, num2);
+            assert_eq!(result, 3);
+        }
+
+        #[test]
+        fn add_negative_numbers(){
+            let num1 = -1;
+            let num2 = -1;
+            let result = add(num1, num2);
+            assert_eq!(result, -2);
+
+        }
+    }
+
+    mod subtract_test{
+
+        use super::super::*;
+
+        #[test]
+        fn test_substract(){
+            let num1 = 3;
+            let num2: i32 = 1;
+            let result = sub(num1, num2);
+            assert_eq!(result, 2);
+        }
+
+    }
 }
