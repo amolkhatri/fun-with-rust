@@ -76,4 +76,47 @@ mod tests{
         }
 
     }
+
+    mod multiply_test{
+
+        use super::super::*;
+
+        #[test]
+        fn test_multiply(){
+            let num1 = 5;
+            let num2 = 10;
+            let result = mul(num1, num2);
+            assert_eq!(result, 50);
+        }
+
+        #[test]
+        fn test_multiply_with_zero(){
+            let num1 = 0;
+            let num2 = 10;
+            let result = mul(num1, num2);
+            assert_eq!(result, 0);
+        }
+    }
+
+
+    mod divide_test{
+        use super::super::*;
+
+        #[test]
+        fn test_divide(){
+            let num1 = 10;
+            let num2 = 5;
+            let result = div(num1, num2);
+            assert_eq!(result.unwrap(), 2.0);
+        }
+
+        #[test]
+        fn test_divide_by_zero(){
+            let num1 = 10;
+            let num2 = 0;
+            let result = div(num1, num2);
+            assert_eq!(result, None);
+        }
+    }
+
 }
