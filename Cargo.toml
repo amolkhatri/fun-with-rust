@@ -9,4 +9,8 @@ edition = "2021"
 name = "bac"
 path = "src/bac.rs"
 
+[[bin]]
+name = "problem2"
+path = "src/problem2.rs"
+
 [dependencies]
