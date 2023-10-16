@@ -1,6 +1,44 @@
+use std::env;
+
+fn get_numbers() -> Result<(i32, i32), &'static str>{  //& 'static str is a part of lifetime We will learn about it later on
+
+    let args: Vec<String> = env::args().collect();
+
+    if args.len() > 1 {
+
+        let num1:i32 = match args[1].parse() {
+            Ok(value) => value,
+            Err(_) => {
+                println!("Invalid number 1 provided {}", args[1]);
+                return Err("Invalid first parameter provided");
+                // std::process::exit(1)
+            }
+        };
+
+        let num2: i32 = match args[2].parse(){
+            Ok(value) => value,
+            Err(_) => {
+                println!("Invalid number 2 provided {}", args[2]);
+                return Err("Invalid second parameter provided");
+            }
+        };
+        return Ok((num1, num2));
+    }
+    return Err("No argument provided");
+
+}
+
+
 fn main(){
-    let a = 1;
-    let b = 2;
+    let (a, b) = match get_numbers(){
+        Ok(value) => value,
+        Err(err) => {
+            println!("Err while reading the numbers: {}", err);
+            std::process::exit(1);
+        }
+    };
+    // let a = 1;
+    // let b = 2;
     let added = add(a, b);
     let substracted = sub(a, b);
     let multiplied = mul(a, b);
