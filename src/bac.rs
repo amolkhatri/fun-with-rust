@@ -117,6 +117,7 @@ mod tests{
             let result = div(num1, num2);
             assert_eq!(result, None);
         }
+
     }
 
 }
