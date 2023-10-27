@@ -34,6 +34,8 @@
 
 
 use std::env;
+use std::fs;
+use std::io;
 
 fn get_filename(args: Vec<String> ) -> Result<String, &'static str>{
     
@@ -48,13 +50,22 @@ fn get_filename(args: Vec<String> ) -> Result<String, &'static str>{
 
 
 
-fn main(){
+fn main() -> io::Result<()>{
+    let args: Vec<String> = env::args().collect();
 
+    let result = get_filename(args);
+    if let Ok(value) = result {
+        let content = fs::read_to_string(&value)?;
+        println!("{}", content);
+        println!("value is {}", value);
+    }else {
+        println!("Invalid file name submitted");
+    }
+    Ok(())
 }
 
 
 #[cfg(test)]
-
 
 mod tests{
 
