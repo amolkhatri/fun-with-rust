@@ -13,4 +13,8 @@ path = "src/bac.rs"
 name = "problem2"
 path = "src/problem2.rs"
 
+[[bin]]
+name = "file_read"
+path = "src/file_read.rs"
+
 [dependencies]
