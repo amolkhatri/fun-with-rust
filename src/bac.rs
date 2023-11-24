@@ -11,7 +11,6 @@ fn get_numbers() -> Result<(i32, i32), &'static str>{  //& 'static str is a part
             Err(_) => {
                 println!("Invalid number 1 provided {}", args[1]);
                 return Err("Invalid first parameter provided");
-                // std::process::exit(1)
             }
         };
 
